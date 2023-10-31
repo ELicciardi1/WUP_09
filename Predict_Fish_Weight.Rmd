@@ -48,30 +48,49 @@ Whitefish <- select(Whitefish, -Species)
 
 ## Perch
 ```{r}
+Perch.out <-
+    regsubsets(Weight ~ .,
+               data = Perch,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
 
-Perch1 <- lm(Weight~ .,data=Perch)
-summary.lm(Perch1)
-Perch1 <- lm(Weight~ .-Length1,data=Perch)
-summary.lm(Perch1)
-Perch1 <- lm(Weight~ .-Length1-Length2,data=Perch)
-summary.lm(Perch1)
-Perch1 <- lm(Weight~ .-Length1-Length2-Width,data=Perch)
-summary.lm(Perch1)
-#model2 <- lm(___~___,data=mydata)
-#model3 <- lm(___~___,data=mydata)
-#target1 <- data.frame()
-
+Perch.Summary <- summary(Perch.out)
+as.data.frame(Perch.Summary$outmat)
+subsets(Perch.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
 ```
 ### Best Models
 
+Best Single Model - Height
+
 ### Best Two regressor model
 
+Best Double Model - Height + Width
 
 ## Pike
 
+```{r}
+Pike.out <-
+    regsubsets(Weight ~ .,
+               data = Pike,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+Pike.Summary <- summary(Pike.out)
+as.data.frame(Pike.Summary$outmat)
+subsets(Pike.out,statistic="adjr2",legend="bottomright",main="Adjusted R^2")
+```
+
 ### Best Models
 
+Best Model - Length 3
+
 ### Best Two regressor model
+
+Best Two Regressor Model L1-L3
 
 ## Roach
 
