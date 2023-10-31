@@ -1,15 +1,12 @@
 ---
 title: "Weight of Fish"
-author: "Your Name"
+author: "Ezra Licciardi"
 date: "`r Sys.Date()`"  
 output: 
   html_document:
     number_sections: true
     toc: true
     toc_depth: 5
-
- 
-    
 ---
 
 
@@ -50,7 +47,21 @@ Whitefish <- select(Whitefish, -Species)
 
 
 ## Perch
+```{r}
 
+Perch1 <- lm(Weight~ .,data=Perch)
+summary.lm(Perch1)
+Perch1 <- lm(Weight~ .-Length1,data=Perch)
+summary.lm(Perch1)
+Perch1 <- lm(Weight~ .-Length1-Length2,data=Perch)
+summary.lm(Perch1)
+Perch1 <- lm(Weight~ .-Length1-Length2-Width,data=Perch)
+summary.lm(Perch1)
+#model2 <- lm(___~___,data=mydata)
+#model3 <- lm(___~___,data=mydata)
+#target1 <- data.frame()
+
+```
 ### Best Models
 
 ### Best Two regressor model
